@@ -1,28 +1,34 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
+    public float speed = 20.0f;
+    public float rotationSpeed;
+    public float verticalInput;
+    public float horizontalInput;
+    private Text count;
+    public Text countText;
+    private float turnspeed = 45.0f;
+
     // Start is called before the first frame update
     void Start()
     {
         
     }
-
-    private float speed = 20.0f;
-    private float turnspeed = 45.0f;
-    private float horizontalInput;
-    private float forwardInput;
-
+    
     // Update is called once per frame
     void Update()
     {
         // Move the vehicle forward
         horizontalInput = Input.GetAxis("Horizontal");
-        forwardInput = Input.GetAxis("Vertical");
+        verticalInput = Input.GetAxis("Vertical");
+        
         // Moves the car forward based on vertical input
-        transform.Translate(Vector3.forward * Time.deltaTime * speed * forwardInput);
+        transform.Translate(Vector3.forward * Time.deltaTime * speed * verticalInput);
+        
         // Rotates the car based on horizontal input
         transform.Rotate(Vector3.up, turnspeed * horizontalInput * Time.deltaTime);
     }
