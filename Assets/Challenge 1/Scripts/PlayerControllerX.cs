@@ -5,12 +5,9 @@ using UnityEngine.UI;
 
 public class PlayerControllerX : MonoBehaviour
 {
-    public GameObject plane;
-    public float speed = 20.0f;
-    public float turnSpeed = 5.0f;
-    public float rotationSpeed;
-    public float verticalInput;
-    public float horizontalInput;
+    [SerializeField] private float speed;
+    [SerializeField] private float rotationSpeed;
+    [SerializeField] private float turnSpeed;
     public Text countText;
     private Text count;
     private Vector3 offset;
@@ -22,17 +19,18 @@ public class PlayerControllerX : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
-        // Move the vehicle forward
-        Vector3 rotOffset = player.transform.rotation * offset;
-        transform.position = player.transform.position + rotOffset;
-        transform.rotation = player.transform.rotation;
+        // get the user's vertical input
+        float verticalInput = Input.GetAxis("Vertical");
+        float horizontalInput = Input.GetAxis("Horizontal");
 
-        // Moves the car forward based on vertical input
-        transform.Translate(Vector3.forward * Time.deltaTime * speed * verticalInput);
+        // move the plane forward at a constant rate
+        transform.Translate(Vector3.forward * speed * Time.deltaTime);
 
-        // Rotates the car based on horizontal input
-        transform.Rotate(Vector3.up * horizontalInput * Time.deltaTime);
+        // tilt the plane up/down based on up/down arrow keys
+        transform.Rotate(Vector3.right * rotationSpeed * Time.deltaTime * verticalInput);
+
+        transform.Rotate(Vector3.forward * rotationSpeed * Time.deltaTime * horizontalInput * -1);
     }
 }
