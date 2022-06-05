@@ -2,15 +2,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class PlayerControllerX : MonoBehaviour
 {
     [SerializeField] private float speed;
     [SerializeField] private float rotationSpeed;
     [SerializeField] private float turnSpeed;
-    public Text countText;
-    private Text count;
+    public TextMeshProUGUI countText;
+    private TextMeshProUGUI count;
     private Vector3 offset;
+    private GameObject projectilePrefab;
 
     // Start is called before the first frame update
     void Start()
@@ -19,6 +21,11 @@ public class PlayerControllerX : MonoBehaviour
     }
 
     // Update is called once per frame
+    void Update()
+    {
+        Instantiate(projectilePrefab, transform.position, projectilePrefab.transform.rotation);
+    }
+
     void FixedUpdate()
     {
         // get the user's vertical input
