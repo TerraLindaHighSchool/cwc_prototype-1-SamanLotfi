@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Carrot
   - Food
+  - Manager
   layers:
   - Default
   - TransparentFX

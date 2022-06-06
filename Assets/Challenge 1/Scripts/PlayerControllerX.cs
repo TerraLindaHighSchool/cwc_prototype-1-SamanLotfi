@@ -10,18 +10,13 @@ public class PlayerControllerX : MonoBehaviour
     [SerializeField] private float rotationSpeed;
     [SerializeField] private float turnSpeed;
     [SerializeField] private Vector3 offset;
-    public TextMeshProUGUI countText;
-    public GameObject winTextObject;
-    private int count;
+    
+    
 
     // Start is called before the first frame update
     void Start()
     {
-        count = 0;
-
-        SetCountText();
-
-        winTextObject.SetActive(false);
+       
     }
 
     // Update is called once per frame
@@ -45,25 +40,5 @@ public class PlayerControllerX : MonoBehaviour
         transform.Rotate(Vector3.forward * rotationSpeed * Time.deltaTime * horizontalInput * -1);
     }
 
-    void OnTriggerEnter(Collider other)
-    {
-        if (other.gameObject.CompareTag("Food"))
-        {
-            other.gameObject.SetActive(false);
-
-            count = count + 1;
-
-            SetCountText();
-        }
-    }
-
-    void SetCountText()
-    {
-        countText.text = "Count: " + count.ToString();
-
-        if (count >= 23)
-        {
-            winTextObject.SetActive(true);
-        }
-    }
+   
 }

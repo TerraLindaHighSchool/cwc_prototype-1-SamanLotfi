@@ -1,25 +1,23 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
 
 public class DetectCollisionsX : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
+    public GameManagerScript gameManagerScript;
 
-    }
+    public void OnTriggerEnter(Collider other)
+    { 
 
-    // Update is called once per frame
-    void Update()
-    {
+        if (other.gameObject.CompareTag("Carrot"))
+        {
 
-    }
-    private void OnTriggerEnter(Collider collision)
-    {
-        //Destroys object when touched
-        if (collision.gameObject.tag == "Carrot")
-        Destroy(collision.gameObject);
-        Destroy(collision.gameObject);
+            gameManagerScript.count++;
+            gameManagerScript.SetCountText();
+            Destroy(other.gameObject);
+            gameObject.SetActive(false);
+        }
     }
 }
