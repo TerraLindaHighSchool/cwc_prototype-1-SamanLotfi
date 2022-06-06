@@ -4,7 +4,7 @@ using UnityEngine;
 
 // You need to create an empty, attach this script to it, then parent your camera to that empty. After that just drag your char object to Public Transform player
 
-public class CameraRotator : MonoBehaviour
+public class CameraRotatorX : MonoBehaviour
 {
 
     #region Fields
