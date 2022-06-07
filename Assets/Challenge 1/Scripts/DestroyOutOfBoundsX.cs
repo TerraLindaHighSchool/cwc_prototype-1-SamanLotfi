@@ -10,8 +10,8 @@ public class DestroyOutOfBoundsX : MonoBehaviour
 
     }
 
-    private float topBound = 100;
-    private float lowerBound = -100;
+    private float topBound = 400;
+    private float lowerBound = -200;
     
     //Removes things that are out of bounds
     void FixedUpdate()
